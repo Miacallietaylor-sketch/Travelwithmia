@@ -44,8 +44,17 @@ to enable real persistence and accounts.
   each holiday-type page and the flights page. Mia remains the one real human
   who books — the "AI Specialist" badge is always shown so they never read as
   real employees (a legal + brand safeguard).
+- **MAHDI** — *My AI Holiday & Destination Intelligence*: a premium floating
+  AI assistant (bottom-right) that discovers destinations, answers general
+  travel questions, runs a 21-point structured enquiry, and hands qualified
+  leads to Mia via a secure server endpoint. Streaming AI (Anthropic/OpenAI
+  behind one interface) with a scripted fallback, per-channel consent, honeypot
+  + rate limiting, Resend email to Mia + customer, full a11y and mobile bottom
+  sheet. Always clearly labelled AI; never books or invents prices. See
+  [`docs/MAHDI-SETUP.md`](docs/MAHDI-SETUP.md).
 - **Admin back office** (`/admin`) for Mia: enquiry pipeline with status
-  management, AI-team on/off toggles, review verification, subscriber CSV
+  management, **MAHDI Leads** (search/filter/status/notes/CSV/anonymise/consent
+  timestamps), AI-team on/off toggles, review verification, subscriber CSV
   export, complaints, and a **Control Centre** of links to every service
   dashboard and registration — guarded by an access code + signed session cookie.
 

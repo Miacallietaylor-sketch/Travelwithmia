@@ -12,6 +12,7 @@ import type {
 } from "@/lib/admin/data";
 import { team } from "@/data/team";
 import { controlCentre } from "@/lib/admin/links";
+import { MahdiLeads } from "./MahdiLeads";
 
 type Data = {
   live: boolean;
@@ -47,7 +48,7 @@ export function AdminDashboard({
 }) {
   const router = useRouter();
   const [tab, setTab] = useState<
-    "quotes" | "team" | "reviews" | "subscribers" | "complaints" | "control"
+    "quotes" | "mahdi" | "team" | "reviews" | "subscribers" | "complaints" | "control"
   >("quotes");
   const [quotes, setQuotes] = useState(initial.quotes);
   const [reviews, setReviews] = useState(initial.reviews);
@@ -145,6 +146,7 @@ export function AdminDashboard({
   const activePersonas = personas.filter((p) => p.active).length;
   const tabs = [
     { id: "quotes" as const, label: `Enquiries (${quotes.length})` },
+    { id: "mahdi" as const, label: "MAHDI Leads" },
     { id: "team" as const, label: `AI Team (${activePersonas} on)` },
     { id: "reviews" as const, label: `Reviews (${stats.pendingReviews} pending)` },
     { id: "subscribers" as const, label: `Subscribers (${initial.subscribers.length})` },
@@ -325,6 +327,9 @@ export function AdminDashboard({
           </div>
         </div>
       )}
+
+      {/* MAHDI LEADS */}
+      {tab === "mahdi" && <MahdiLeads />}
 
       {/* AI TEAM */}
       {tab === "team" && (
