@@ -137,7 +137,7 @@ export async function searchFlights(
     return {
       offers: sampleOffers(params),
       source: "sample",
-      note: "Showing sample flights. Add Amadeus API keys to search live fares.",
+      note: "Guide prices to help you plan — Mia confirms live fares and the best available price before booking.",
     };
   }
 

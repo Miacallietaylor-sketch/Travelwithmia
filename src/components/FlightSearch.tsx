@@ -108,7 +108,7 @@ function OfferCard({ offer }: { offer: FlightOffer }) {
 export function FlightSearch() {
   const today = new Date().toISOString().slice(0, 10);
   const [origin, setOrigin] = useState("LON");
-  const [destination, setDestination] = useState("JFK");
+  const [destination, setDestination] = useState("AGP");
   const [departDate, setDepartDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
   const [adults, setAdults] = useState(2);
@@ -287,7 +287,7 @@ export function FlightSearch() {
                   : "bg-beige text-gold-ink"
               }`}
             >
-              {source === "amadeus" ? "Live fares" : "Sample fares (demo)"}
+              {source === "amadeus" ? "Live fares" : "Indicative fares"}
             </span>
           </div>
           {note && (
@@ -301,9 +301,9 @@ export function FlightSearch() {
             ))}
           </div>
           <p className="mt-6 text-xs text-charcoal/60">
-            Fares are indicative and shown per the party selected, including
-            taxes where available. I&apos;ll confirm the full price and secure
-            the booking personally — the site never takes card details.
+            {source === "amadeus"
+              ? "Live fares for the party selected. I'll confirm the final price and secure the booking personally — the site never takes card details."
+              : "These are realistic guide prices to help you plan, not live fares. I'll check live availability and find you the best actual price before anything is booked — the site never takes card details."}
           </p>
         </div>
       )}
