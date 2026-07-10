@@ -8,7 +8,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata: Metadata = pageMeta({
   title: "Flight Search",
   description:
-    "Search live flight fares from UK airports, then let Mia turn the best option into a fully-protected holiday.",
+    "Explore flights and guide prices from UK airports to Europe and beyond, then let Mia turn the best option into a fully-protected holiday.",
   path: "/flights",
 });
 
@@ -18,7 +18,7 @@ export default function FlightsPage() {
       <PageHeader
         eyebrow="Flight search"
         title="Find the flight — I'll build the holiday around it"
-        intro="Search real fares from UK airports. When you spot one you like, send it to me and I'll turn it into a fully-protected, joined-up trip."
+        intro="Explore routes and guide prices from UK airports across Europe and beyond. Spot one you like and send it to me — I'll check live availability, find the best price, and turn it into a fully-protected, joined-up trip."
       />
       <section className="container-page pb-8">
         <Suspense fallback={<div className="text-charcoal">Loading…</div>}>

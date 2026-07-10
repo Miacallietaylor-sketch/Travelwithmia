@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { PageHeader } from "@/components/PageHeader";
 import { ConciergeNote } from "@/components/ConciergeNote";
 import { NewsletterCapture } from "@/components/NewsletterCapture";
@@ -41,38 +40,57 @@ export default function AboutPage() {
         intro="I'm an independent UK travel consultant. That means no big-agency scripts and no faceless website — just me, personally planning your holiday."
       />
 
-      <section className="container-page grid items-center gap-10 pb-16 lg:grid-cols-2">
-        <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
-          <Image
-            src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=900&q=70"
-            alt="Portrait of Mia, a friendly travel consultant"
-            fill
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover"
-          />
-        </div>
+      <section className="container-page grid items-start gap-10 pb-16 lg:grid-cols-[1.4fr_1fr]">
         <div className="prose-mia">
+          <p>
+            I&apos;m Mia — an independent travel consultant based in the UK. In
+            plain terms: I&apos;m one real person who plans your holiday from
+            start to finish, and stays your single point of contact the whole way
+            through.
+          </p>
           <p>
             I fell for travel the way most people do — one trip that changed how
             I saw the world. What I loved just as much was the planning: the
             research, the little details, the quiet satisfaction of a trip that
-            runs perfectly because someone thought it through.
+            runs perfectly because someone actually thought it through.
           </p>
           <p>
             So I made it my job. Today I plan holidays for families, couples and
-            solo adventurers across the UK — from easy weeks in the sun to
-            complex multi-country journeys. Big enough to get you great value
-            through trusted partners, small enough that you always speak to me.
+            solo travellers across the UK — from easy weeks in the sun to complex
+            multi-country journeys. Big enough to get you real value through
+            trusted partners; small enough that you always speak to me, never a
+            call centre.
           </p>
           <p>
-            I&apos;m not trying to be the biggest travel agent out there. I&apos;m
-            trying to be your travel agent — the one you call first, and the one
-            you recommend to friends.
+            I&apos;m not trying to be the biggest travel agent out there.
+            I&apos;m trying to be <em>your</em> travel agent — the one you call
+            first, and the one you recommend to friends.
           </p>
           <Link href="/quote" className="btn-primary mt-2 no-underline">
             Start your enquiry
           </Link>
         </div>
+
+        {/* Branded signature card (no stock photography) */}
+        <aside className="rounded-3xl border border-sand bg-ink p-8 text-paper">
+          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gold font-display text-3xl font-semibold text-ink">
+            M
+          </div>
+          <p className="mt-5 concierge-note text-3xl text-gold">Mia</p>
+          <p className="font-label text-xs font-semibold uppercase tracking-[0.18em] text-paper/70">
+            Independent UK Travel Consultant
+          </p>
+          <hr className="my-5 border-paper/15" />
+          <ul className="space-y-3 text-sm text-paper/85">
+            <li>One person, one point of contact</li>
+            <li>Personal service — not the biggest inventory</li>
+            <li>Full prices upfront, no drip pricing</li>
+            <li>There if you ever need me, before and during your trip</li>
+          </ul>
+          <p className="mt-6 concierge-note text-xl text-paper/90">
+            &ldquo;Tell me where. I&apos;ll do the rest.&rdquo;
+          </p>
+        </aside>
       </section>
 
       <section className="border-y border-sand bg-paper-2/60 py-16">

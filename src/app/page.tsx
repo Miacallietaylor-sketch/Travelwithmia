@@ -83,16 +83,20 @@ export default function HomePage() {
       {/* Meet Mia */}
       <section className="container-page py-16 sm:py-20">
         <div className="grid items-center gap-10 lg:grid-cols-2">
-          <div className="relative order-2 aspect-[4/5] overflow-hidden rounded-3xl lg:order-1">
-            <Image
-              src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=900&q=70"
-              alt="Portrait of a friendly travel consultant smiling"
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
-            />
+          <div className="rounded-3xl border border-sand bg-paper-2/70 p-8 sm:p-10">
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gold font-display text-3xl font-semibold text-ink">
+              M
+            </div>
+            <p className="mt-5 concierge-note text-4xl text-gold-ink">Mia</p>
+            <p className="font-label text-xs font-semibold uppercase tracking-[0.18em] text-gold-ink">
+              Independent UK Travel Consultant
+            </p>
+            <p className="mt-4 concierge-note text-2xl text-charcoal">
+              &ldquo;When you book with me, you get me — my time, my knowledge,
+              and someone who actually answers the phone.&rdquo;
+            </p>
           </div>
-          <div className="order-1 lg:order-2">
+          <div>
             <p className="eyebrow">Meet Mia</p>
             <h2 className="mt-3 font-display text-3xl font-semibold text-ink sm:text-4xl">
               One real person, genuinely on your side
