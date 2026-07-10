@@ -7,6 +7,7 @@ import { holidayTypes } from "@/data/holidayTypes";
 
 const primaryNav = [
   { href: "/holiday-search", label: "Holiday Search" },
+  { href: "/flights", label: "Flights" },
   { href: "/deals", label: "Deals" },
   { href: "/journal", label: "Journal" },
   { href: "/reviews", label: "Reviews" },
