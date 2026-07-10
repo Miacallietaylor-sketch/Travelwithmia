@@ -7,7 +7,6 @@ const explore = [
   { href: "/flights", label: "Flight Search" },
   { href: "/quote", label: "Get a Quote" },
   { href: "/deals", label: "Travel Deals" },
-  { href: "/team", label: "The AI Team" },
   { href: "/journal", label: "Journal" },
   { href: "/reviews", label: "Reviews" },
   { href: "/faq", label: "FAQ" },

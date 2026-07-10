@@ -6,7 +6,6 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { Footer } from "@/components/Footer";
 import { CookieBanner } from "@/components/CookieBanner";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
-import { MahdiMount } from "@/components/mahdi/MahdiMount";
 import { OrganizationSchema } from "@/components/Schema";
 
 const playfair = Playfair_Display({
@@ -80,7 +79,6 @@ export default function RootLayout({
         </main>
         <Footer />
         <StickyMobileCTA />
-        <MahdiMount />
         <CookieBanner />
       </body>
     </html>

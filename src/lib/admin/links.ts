@@ -13,7 +13,6 @@ export const controlCentre: AdminLinkGroup[] = [
     links: [
       { label: "Homepage", href: "/", note: "View the live homepage" },
       { label: "Enquiries", href: "/admin", note: "Your lead pipeline (this dashboard)" },
-      { label: "The AI Team", href: "/team", note: "Public team page" },
       { label: "Flight search", href: "/flights", note: "Live/sample fare search" },
       { label: "Deals", href: "/deals", note: "Current handpicked deals" },
       { label: "Journal", href: "/journal", note: "Blog / guides" },

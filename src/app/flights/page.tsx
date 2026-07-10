@@ -3,8 +3,6 @@ import type { Metadata } from "next";
 import { FlightSearch } from "@/components/FlightSearch";
 import { PageHeader } from "@/components/PageHeader";
 import { ConciergeNote } from "@/components/ConciergeNote";
-import { PersonaStrip } from "@/components/PersonaCard";
-import { getPersona } from "@/data/team";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
@@ -15,7 +13,6 @@ export const metadata: Metadata = pageMeta({
 });
 
 export default function FlightsPage() {
-  const ivy = getPersona("ivy");
   return (
     <>
       <PageHeader
@@ -24,11 +21,6 @@ export default function FlightsPage() {
         intro="Search real fares from UK airports. When you spot one you like, send it to me and I'll turn it into a fully-protected, joined-up trip."
       />
       <section className="container-page pb-8">
-        {ivy && (
-          <div className="mb-6 max-w-xl">
-            <PersonaStrip persona={ivy} />
-          </div>
-        )}
         <Suspense fallback={<div className="text-charcoal">Loading…</div>}>
           <FlightSearch />
         </Suspense>
