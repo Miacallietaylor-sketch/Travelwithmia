@@ -5,8 +5,9 @@ import { usePathname } from "next/navigation";
 
 export function StickyMobileCTA() {
   const pathname = usePathname();
-  // Don't cover the quote form itself.
-  if (pathname?.startsWith("/quote")) return null;
+  // Don't cover the quote form, or show on internal admin pages.
+  if (pathname?.startsWith("/quote") || pathname?.startsWith("/admin"))
+    return null;
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-sand bg-paper/95 p-3 backdrop-blur lg:hidden">

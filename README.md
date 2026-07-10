@@ -29,6 +29,24 @@ to enable real persistence and accounts.
 > flows (e.g. VIP membership) use hosted **Stripe Payment Links** only — the
 > site never touches raw card numbers.
 
+### Key features
+
+- **Public site**: home, about, holiday search, 8 holiday-type pages, deals,
+  journal, reviews, FAQ, business opportunity, contact, full legal suite, 404.
+- **Live flight search** (`/flights`) via the Amadeus Self-Service API, with a
+  clearly-labelled sample-data fallback when keys aren't set. "Ask Mia to book"
+  routes each fare into the quote form.
+- **Multi-step quote flow** with granular per-channel marketing consent.
+- **Client accounts + dashboard** (Supabase Auth: email/password + Google).
+- **Admin back office** (`/admin`) for Mia: enquiry pipeline with status
+  management, review verification, subscriber CSV export, complaints — guarded
+  by an access code + signed session cookie.
+
+📖 **Guides for Mia**: [`docs/GO-LIVE-CHECKLIST.md`](docs/GO-LIVE-CHECKLIST.md)
+(everything to make it real, incl. free API keys and the UK bodies to register
+with) and [`docs/ADMIN-GUIDE.md`](docs/ADMIN-GUIDE.md) (how to run the back
+office, with worked scenarios).
+
 ---
 
 ## Getting started (local)
@@ -152,12 +170,18 @@ src/
     api/               #   /api/quote, /api/newsletter (graceful DB fallback)
     holiday-types/     #   index + [slug] for each holiday type
     journal/           #   blog index + [slug]
+    flights/           #   live flight search page
     account/           #   auth + dashboard (+ /reset)
+    admin/             #   Mia's back office (+ /login)
+    api/               #   quote, newsletter, flights/search, admin/*
     (legal pages)      #   privacy, cookies, terms, complaints
-  components/          # Hero, ConciergeNote, QuoteForm, cards, banner, footer…
+  components/          # Hero, ConciergeNote, QuoteForm, FlightSearch, admin/…
   data/                # Seed content powering pages (types, destinations, …)
-  lib/                 # site config, seo, supabase clients, validation
+  lib/                 # site config, seo, supabase, flights (amadeus), admin
 supabase/
   schema.sql           # tables + RLS
   seed.sql             # sample data
+docs/
+  GO-LIVE-CHECKLIST.md # make-it-real steps + UK bodies to register with
+  ADMIN-GUIDE.md       # how Mia runs the back office (with scenarios)
 ```
