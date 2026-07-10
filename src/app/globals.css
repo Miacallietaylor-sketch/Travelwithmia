@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-playfair: "Playfair Display", Georgia, serif;
+    --font-poppins: "Poppins", system-ui, sans-serif;
+    --font-montserrat: "Montserrat", system-ui, sans-serif;
+    --font-caveat: "Caveat", cursive;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-paper text-ink font-body antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+    letter-spacing: -0.01em;
+  }
+
+  /* Visible focus states everywhere (WCAG 2.2 AA) */
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 3px solid #7e6230;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: #e9dfcc;
+    color: #14130f;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-content px-5 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply font-label text-xs font-semibold uppercase tracking-[0.22em] text-gold-ink;
+  }
+
+  .hairline {
+    @apply border-0 border-t border-sand;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-label text-sm font-semibold uppercase tracking-[0.12em] transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .btn-primary {
+    @apply btn bg-gold px-7 py-3.5 text-paper hover:bg-gold-ink;
+  }
+
+  .btn-secondary {
+    @apply btn border border-gold px-7 py-3.5 text-gold-ink hover:bg-beige;
+  }
+
+  .btn-ghost {
+    @apply btn border border-sand px-6 py-3 text-charcoal hover:border-gold hover:text-gold-ink;
+  }
+
+  .card {
+    @apply rounded-2xl border border-sand bg-paper shadow-card;
+  }
+
+  .field-label {
+    @apply mb-1.5 block font-label text-xs font-semibold uppercase tracking-[0.1em] text-charcoal;
+  }
+
+  .field-input {
+    @apply w-full rounded-xl border border-sand bg-paper px-4 py-3 text-ink placeholder:text-charcoal/40 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold-ink/30;
+  }
+
+  .field-error {
+    @apply mt-1.5 font-body text-sm text-red-700;
+  }
+
+  .prose-mia {
+    @apply max-w-prose font-body text-charcoal leading-relaxed;
+  }
+
+  .prose-mia p {
+    @apply mb-4;
+  }
+
+  .prose-mia h2 {
+    @apply mb-3 mt-8 text-2xl text-ink;
+  }
+
+  .prose-mia h3 {
+    @apply mb-2 mt-6 text-xl text-ink;
+  }
+
+  .prose-mia a {
+    @apply text-gold-ink underline decoration-sand underline-offset-4 hover:decoration-gold;
+  }
+
+  .prose-mia ul {
+    @apply mb-4 ml-5 list-disc space-y-1.5;
+  }
+}
+
+/* Handwritten Concierge Note */
+.concierge-note {
+  font-family: var(--font-caveat);
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
