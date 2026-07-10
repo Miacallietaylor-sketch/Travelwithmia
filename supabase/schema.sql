@@ -113,6 +113,17 @@ create table if not exists public.reviews (
   created_at    timestamptz not null default now()
 );
 
+-- ── AI concierge team (personas) ────────────────────────────
+-- The public roster is defined in code (src/data/team.ts). This table lets Mia
+-- toggle a persona on/off from the admin panel; `active=false` hides them.
+create table if not exists public.ai_personas (
+  slug        text primary key,
+  name        text,
+  role        text,
+  active      boolean not null default true,
+  updated_at  timestamptz not null default now()
+);
+
 -- ── Marketing / CRM ─────────────────────────────────────────
 create table if not exists public.newsletter_subscribers (
   id          uuid primary key default gen_random_uuid(),
@@ -195,7 +206,10 @@ do $$ begin
   create policy "public read destinations" on public.destinations for select using (true);
   create policy "public read published blog" on public.blog_posts for select using (published);
   create policy "public read verified reviews" on public.reviews for select using (verified);
+  create policy "public read active personas" on public.ai_personas for select using (active);
 exception when duplicate_object then null; end $$;
+
+alter table public.ai_personas enable row level security;
 
 do $$ begin
   create policy "own profile" on public.users
