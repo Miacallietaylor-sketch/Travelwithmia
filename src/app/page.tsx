@@ -8,7 +8,9 @@ import { BlogCard } from "@/components/BlogCard";
 import { NewsletterCapture } from "@/components/NewsletterCapture";
 import { SectionHeading } from "@/components/PageHeader";
 import { ConciergeNote } from "@/components/ConciergeNote";
+import { PersonaCard } from "@/components/PersonaCard";
 import { holidayTypes } from "@/data/holidayTypes";
+import { team } from "@/data/team";
 import { reviews } from "@/data/reviews";
 import { blogPosts } from "@/data/blog";
 import { deals } from "@/data/deals";
@@ -77,6 +79,28 @@ export default function HomePage() {
               <HolidayTypeCard key={t.slug} type={t} />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* AI Concierge Team */}
+      <section className="container-page py-16 sm:py-20">
+        <SectionHeading
+          eyebrow="The team"
+          title="AI specialists, one human who books"
+          intro="A specialist for every kind of trip, working round the clock — then Mia, the one real person, personally books and protects it."
+          action={
+            <Link href="/team" className="btn-ghost hidden sm:inline-flex">
+              Meet the team
+            </Link>
+          }
+        />
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {team
+            .filter((p) => p.active && p.holidayType)
+            .slice(0, 3)
+            .map((p) => (
+              <PersonaCard key={p.slug} persona={p} />
+            ))}
         </div>
       </section>
 

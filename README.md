@@ -38,14 +38,23 @@ to enable real persistence and accounts.
   routes each fare into the quote form.
 - **Multi-step quote flow** with granular per-channel marketing consent.
 - **Client accounts + dashboard** (Supabase Auth: email/password + Google).
+- **AI Concierge Team** (`/team`): clearly-badged AI specialists — one per
+  section (cruises, Disney, luxury, family, city breaks, honeymoons,
+  tailor-made, multi-centre, flights, plus welcome/journal/support). Embedded on
+  each holiday-type page and the flights page. Mia remains the one real human
+  who books — the "AI Specialist" badge is always shown so they never read as
+  real employees (a legal + brand safeguard).
 - **Admin back office** (`/admin`) for Mia: enquiry pipeline with status
-  management, review verification, subscriber CSV export, complaints — guarded
-  by an access code + signed session cookie.
+  management, AI-team on/off toggles, review verification, subscriber CSV
+  export, complaints, and a **Control Centre** of links to every service
+  dashboard and registration — guarded by an access code + signed session cookie.
 
-📖 **Guides for Mia**: [`docs/GO-LIVE-CHECKLIST.md`](docs/GO-LIVE-CHECKLIST.md)
-(everything to make it real, incl. free API keys and the UK bodies to register
-with) and [`docs/ADMIN-GUIDE.md`](docs/ADMIN-GUIDE.md) (how to run the back
-office, with worked scenarios).
+📖 **Guides for Mia** (in `docs/`):
+- [`GO-LIVE-CHECKLIST.md`](docs/GO-LIVE-CHECKLIST.md) — make it real: free keys +
+  the UK bodies to register with.
+- [`ADMIN-GUIDE.md`](docs/ADMIN-GUIDE.md) — running the back office, with scenarios.
+- [`FREE-APIS.md`](docs/FREE-APIS.md) — a big catalogue of free/free-tier APIs.
+- [`COSTS.md`](docs/COSTS.md) — the honest list of what's free and what isn't.
 
 ---
 

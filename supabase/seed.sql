@@ -56,6 +56,21 @@ values
   (true,'city-breaks','Rome',2,0,'£1,200 total','Sample Couple','sample3@example.com','booked', now(), true, 'seed')
 on conflict do nothing;
 
+insert into public.ai_personas (slug, name, role, active) values
+  ('pearl','Pearl','AI Welcome Concierge',true),
+  ('aria','Aria','AI Cruise Concierge',true),
+  ('max','Max','AI Disney & Parks Planner',true),
+  ('celeste','Celeste','AI Luxury Specialist',true),
+  ('ben','Ben','AI Family Holiday Helper',true),
+  ('leo','Leo','AI City Break Curator',true),
+  ('rosa','Rosa','AI Honeymoon Specialist',true),
+  ('sol','Sol','AI Tailor-Made Designer',true),
+  ('nova','Nova','AI Multi-Centre Planner',true),
+  ('ivy','Ivy','AI Flight Finder',true),
+  ('juno','Juno','AI Journal Writer',true),
+  ('vera','Vera','AI Support & FAQ',true)
+on conflict (slug) do update set name = excluded.name, role = excluded.role;
+
 insert into public.newsletter_subscribers (email, source) values
   ('subscriber1@example.com','seed'),
   ('subscriber2@example.com','seed')

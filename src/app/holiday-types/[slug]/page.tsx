@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { holidayTypes, getHolidayType } from "@/data/holidayTypes";
 import { HolidayTypeCard } from "@/components/HolidayTypeCard";
 import { ConciergeNote } from "@/components/ConciergeNote";
+import { PersonaStrip } from "@/components/PersonaCard";
+import { personaForHolidayType } from "@/data/team";
 import { pageMeta } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -35,6 +37,7 @@ export default function HolidayTypePage({
   if (!type) notFound();
 
   const others = holidayTypes.filter((t) => t.slug !== type.slug).slice(0, 4);
+  const persona = personaForHolidayType(type.slug);
 
   return (
     <>
@@ -97,6 +100,12 @@ export default function HolidayTypePage({
           </ul>
         </div>
         <aside className="space-y-6">
+          {persona && (
+            <div>
+              <p className="eyebrow mb-2">Your AI specialist</p>
+              <PersonaStrip persona={persona} />
+            </div>
+          )}
           <ConciergeNote>{type.conciergeNote}</ConciergeNote>
           <div className="card p-6">
             <h3 className="font-display text-lg font-semibold text-ink">
