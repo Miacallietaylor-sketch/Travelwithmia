@@ -9,8 +9,8 @@ const primaryNav = [
   { href: "/holiday-search", label: "Holiday Search" },
   { href: "/flights", label: "Flights" },
   { href: "/deals", label: "Deals" },
-  { href: "/team", label: "The Team" },
   { href: "/journal", label: "Journal" },
+  { href: "/reviews", label: "Reviews" },
   { href: "/about", label: "Meet Mia" },
 ];
 
