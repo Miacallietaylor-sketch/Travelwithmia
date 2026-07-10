@@ -60,7 +60,7 @@ double-check limits when you sign up.
 | **Pexels** | Photos + video | Free, 200/hr | pexels.com/api |
 | **Pixabay** | Photos & illustrations | Free | pixabay.com/api/docs |
 
-## 🤖 AI (to actually power the "AI specialists")
+## 🤖 AI (chat assistants, content drafting, etc.)
 | API | What it does | Free tier | Sign up |
 |-----|--------------|-----------|---------|
 | **Google Gemini** | Chat, generation | Generous free tier | aistudio.google.com |
@@ -70,9 +70,9 @@ double-check limits when you sign up.
 | **Anthropic (Claude)** | Chat, drafting | Paid, small free credit | console.anthropic.com |
 | **OpenAI** | Chat, drafting | Paid | platform.openai.com |
 
-> To make the AI personas *actually chat* (not just present), we'd add one of
-> the above (Gemini or Groq are the best free starts) behind a server route.
-> Ask me and I'll build the chat widget.
+> Handy for drafting journal posts or, later, an optional support chat behind a
+> secure server route (Gemini or Groq are the best free starts). Ask me if you
+> ever want one built.
 
 ## ✉️ Email & messaging (enquiry notifications, newsletters)
 | API | What it does | Free tier | Sign up |
@@ -95,7 +95,6 @@ double-check limits when you sign up.
 1. **Open-Meteo weather** on destination & holiday-type pages (no key). ⭐
 2. **Frankfurter currency** converter for budgeting (no key). ⭐
 3. **Resend** so new enquiries email you instantly (3k/mo free). ⭐
-4. **Gemini/Groq** to make an AI specialist genuinely chat. ⭐
 
 Tell me which and I'll wire them in the same graceful way as flights (works with
 a placeholder, upgrades the moment a key is added).

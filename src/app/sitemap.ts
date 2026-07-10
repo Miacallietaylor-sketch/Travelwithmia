@@ -11,7 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/about",
     "/holiday-search",
     "/flights",
-    "/team",
     "/quote",
     "/deals",
     "/journal",

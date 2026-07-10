@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import type {
   AdminQuote,
@@ -10,9 +9,7 @@ import type {
   AdminSubscriber,
   AdminComplaint,
 } from "@/lib/admin/data";
-import { team } from "@/data/team";
 import { controlCentre } from "@/lib/admin/links";
-import { MahdiLeads } from "./MahdiLeads";
 
 type Data = {
   live: boolean;
@@ -48,11 +45,10 @@ export function AdminDashboard({
 }) {
   const router = useRouter();
   const [tab, setTab] = useState<
-    "quotes" | "mahdi" | "team" | "reviews" | "subscribers" | "complaints" | "control"
+    "quotes" | "reviews" | "subscribers" | "complaints" | "control"
   >("quotes");
   const [quotes, setQuotes] = useState(initial.quotes);
   const [reviews, setReviews] = useState(initial.reviews);
-  const [personas, setPersonas] = useState(team);
   const [filter, setFilter] = useState<string>("all");
   const [busy, setBusy] = useState<string | null>(null);
 
@@ -121,33 +117,14 @@ export function AdminDashboard({
     URL.revokeObjectURL(url);
   }
 
-  async function togglePersona(slug: string, active: boolean) {
-    setBusy(slug);
-    setPersonas((ps) =>
-      ps.map((p) => (p.slug === slug ? { ...p, active } : p))
-    );
-    try {
-      await fetch("/api/admin/personas", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ slug, active }),
-      });
-    } finally {
-      setBusy(null);
-    }
-  }
-
   async function signOut() {
     await fetch("/api/admin/logout", { method: "POST" });
     router.push("/admin/login");
     router.refresh();
   }
 
-  const activePersonas = personas.filter((p) => p.active).length;
   const tabs = [
     { id: "quotes" as const, label: `Enquiries (${quotes.length})` },
-    { id: "mahdi" as const, label: "MAHDI Leads" },
-    { id: "team" as const, label: `AI Team (${activePersonas} on)` },
     { id: "reviews" as const, label: `Reviews (${stats.pendingReviews} pending)` },
     { id: "subscribers" as const, label: `Subscribers (${initial.subscribers.length})` },
     { id: "complaints" as const, label: `Complaints (${initial.complaints.length})` },
@@ -324,59 +301,6 @@ export function AdminDashboard({
                 ))}
               </tbody>
             </table>
-          </div>
-        </div>
-      )}
-
-      {/* MAHDI LEADS */}
-      {tab === "mahdi" && <MahdiLeads />}
-
-      {/* AI TEAM */}
-      {tab === "team" && (
-        <div className="mt-6">
-          <p className="mb-4 text-sm text-charcoal/70">
-            Your AI concierge specialists. Toggle one off to hide it from the
-            public site. These are clearly badged as AI everywhere — you remain
-            the one real person who books.
-          </p>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {personas.map((p) => (
-              <div key={p.slug} className="card flex items-center gap-4 p-4">
-                <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-full">
-                  <Image
-                    src={p.avatar}
-                    alt={p.avatarAlt}
-                    fill
-                    sizes="56px"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="font-display text-base font-semibold text-ink">
-                    {p.name}
-                  </p>
-                  <p className="text-xs text-charcoal/70">{p.role}</p>
-                  <p className="text-[11px] text-charcoal/50">{p.section}</p>
-                </div>
-                <button
-                  onClick={() => togglePersona(p.slug, !p.active)}
-                  disabled={busy === p.slug}
-                  aria-pressed={p.active}
-                  className={`relative h-6 w-11 flex-shrink-0 rounded-full transition-colors ${
-                    p.active ? "bg-green-700" : "bg-sand"
-                  }`}
-                >
-                  <span
-                    className={`absolute top-0.5 h-5 w-5 rounded-full bg-paper transition-all ${
-                      p.active ? "left-[22px]" : "left-0.5"
-                    }`}
-                  />
-                  <span className="sr-only">
-                    {p.active ? "On" : "Off"} — toggle {p.name}
-                  </span>
-                </button>
-              </div>
-            ))}
           </div>
         </div>
       )}

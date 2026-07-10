@@ -113,17 +113,6 @@ create table if not exists public.reviews (
   created_at    timestamptz not null default now()
 );
 
--- ── AI concierge team (personas) ────────────────────────────
--- The public roster is defined in code (src/data/team.ts). This table lets Mia
--- toggle a persona on/off from the admin panel; `active=false` hides them.
-create table if not exists public.ai_personas (
-  slug        text primary key,
-  name        text,
-  role        text,
-  active      boolean not null default true,
-  updated_at  timestamptz not null default now()
-);
-
 -- ── Marketing / CRM ─────────────────────────────────────────
 create table if not exists public.newsletter_subscribers (
   id          uuid primary key default gen_random_uuid(),
@@ -167,54 +156,6 @@ create table if not exists public.documents (
   created_at  timestamptz not null default now()
 );
 
--- ── MAHDI leads (AI concierge enquiries) ────────────────────
-do $$ begin
-  create type mahdi_lead_status as enum
-    ('New','Contact required','Quote in progress','Quote sent','Booked','Closed','Spam');
-exception when duplicate_object then null; end $$;
-
-create table if not exists public.mahdi_leads (
-  id                          uuid primary key default gen_random_uuid(),
-  seq                         bigint generated always as identity,
-  reference                   text,
-  source                      text not null default 'MAHDI Website Concierge',
-  enquiry_type                text,
-  destination                 text,
-  departure_airport           text,
-  departure_date              text,
-  date_flexibility            text,
-  nights                      text,
-  adults                      int not null default 1,
-  children                    int not null default 0,
-  children_ages               text,
-  budget                      text,
-  board_basis                 text,
-  holiday_style               text,
-  hotel_preference            text,
-  requirements                text,
-  accessibility_requirements  text,
-  customer_name               text not null,
-  email                       text not null,
-  phone                       text,
-  preferred_contact_method    text,
-  best_contact_time           text,
-  enquiry_consent             boolean not null default false,
-  enquiry_consent_timestamp   timestamptz,
-  marketing_consent           boolean not null default false,
-  marketing_consent_timestamp timestamptz,
-  conversation_summary        text,
-  status                      mahdi_lead_status not null default 'New',
-  internal_notes              text default '',
-  assigned_to                 text default '',
-  created_at                  timestamptz not null default now(),
-  updated_at                  timestamptz not null default now()
-);
-create index if not exists mahdi_leads_status_idx on public.mahdi_leads (status);
-create index if not exists mahdi_leads_email_idx on public.mahdi_leads (email);
-
--- RLS on; only the service role (server) reads/writes leads. No public policy.
-alter table public.mahdi_leads enable row level security;
-
 -- ── Complaints log (ADR) ────────────────────────────────────
 do $$ begin
   create type complaint_status as enum ('open','acknowledged','resolved','escalated_adr');
@@ -254,10 +195,7 @@ do $$ begin
   create policy "public read destinations" on public.destinations for select using (true);
   create policy "public read published blog" on public.blog_posts for select using (published);
   create policy "public read verified reviews" on public.reviews for select using (verified);
-  create policy "public read active personas" on public.ai_personas for select using (active);
 exception when duplicate_object then null; end $$;
-
-alter table public.ai_personas enable row level security;
 
 do $$ begin
   create policy "own profile" on public.users
