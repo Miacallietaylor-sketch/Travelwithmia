@@ -1,4 +1,4 @@
-import { site } from "@/lib/site";
+import { site, has } from "@/lib/site";
 import { aggregateRating } from "@/data/reviews";
 
 function JsonLd({ data }: { data: Record<string, unknown> }) {
@@ -11,28 +11,45 @@ function JsonLd({ data }: { data: Record<string, unknown> }) {
 }
 
 export function OrganizationSchema() {
-  return (
-    <JsonLd
-      data={{
-        "@context": "https://schema.org",
-        "@type": "TravelAgency",
-        name: site.name,
-        description: site.description,
-        url: site.url,
-        slogan: site.tagline,
-        email: site.contact.email,
-        telephone: site.contact.phone,
-        areaServed: "GB",
-        priceRange: "££–££££",
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: aggregateRating.ratingValue,
-          reviewCount: aggregateRating.reviewCount,
-          bestRating: aggregateRating.bestRating,
-        },
-      }}
-    />
-  );
+  const sameAs = [
+    site.social.instagram,
+    site.social.facebook,
+    site.social.tiktok,
+  ].filter(has);
+
+  const data: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    "@id": `${site.url}/#organization`,
+    name: site.name,
+    description: site.description,
+    url: site.url,
+    slogan: site.tagline,
+    email: site.contact.email,
+    image: `${site.url}/opengraph-image`,
+    areaServed: { "@type": "Country", name: "United Kingdom" },
+    knowsAbout: [
+      "Cruises",
+      "Disney holidays",
+      "Luxury travel",
+      "Family holidays",
+      "Honeymoons",
+      "City breaks",
+      "Multi-centre holidays",
+      "Tailor-made travel",
+    ],
+    priceRange: "££–££££",
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: aggregateRating.ratingValue,
+      reviewCount: aggregateRating.reviewCount,
+      bestRating: aggregateRating.bestRating,
+    },
+  };
+  if (has(site.contact.phone)) data.telephone = site.contact.phone;
+  if (sameAs.length) data.sameAs = sameAs;
+
+  return <JsonLd data={data} />;
 }
 
 export function FaqSchema({
