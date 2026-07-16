@@ -60,8 +60,8 @@ export const blogPosts: BlogPost[] = [
     date: "2026-04-15",
     author: "Mia",
     image:
-      "https://images.unsplash.com/photo-1602002418082-a4443e081dd1?auto=format&fit=crop&w=1200&q=70",
-    imageAlt: "A family enjoying a beach holiday together",
+      "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=1200&q=70",
+    imageAlt: "An infinity pool at a beachfront resort overlooking the sea",
     body: [
       "All-inclusive can be brilliant value or a false economy. The difference is your family's habits, not the label.",
       "If you'll use the kids' club, eat most meals on-site and enjoy a poolside drink, all-inclusive usually wins — and the budgeting certainty is a holiday in itself.",
