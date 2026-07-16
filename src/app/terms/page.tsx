@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LegalPage } from "@/components/LegalPage";
-import { site } from "@/lib/site";
+import { site, has } from "@/lib/site";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
@@ -16,22 +16,20 @@ export default function TermsPage() {
     <LegalPage title="Terms & Booking Conditions" updated="10 July 2026">
       <p>
         These terms govern the travel arrangements I make for you as{" "}
-        {site.legal.registeredName} (trading as {site.legal.tradingName}).
-        Please read them alongside the specific conditions of the tour
-        operators and suppliers your booking is made with.
+        {has(site.legal.registeredName) ? site.legal.registeredName : site.legal.tradingName}
+        {has(site.legal.registeredName) ? ` (trading as ${site.legal.tradingName})` : ""}.
+        Please read them alongside the specific conditions of the tour operators
+        and suppliers your booking is made with.
       </p>
 
       <h2>Financial protection</h2>
       <p>
         When you buy a package that includes a flight, it is protected under the
-        ATOL scheme ({site.legal.atolNumber}). Other packages may be protected
-        under ABTA ({site.legal.abtaNumber}). You will receive an ATOL
-        Certificate where applicable — keep it safe.
-      </p>
-      <p className="text-sm text-charcoal/70">
-        The ATOL and ABTA numbers above are placeholders in this demo and must
-        be replaced with genuine registrations before publishing. Never display
-        a fabricated financial-protection number.
+        ATOL scheme{has(site.legal.atolNumber) ? ` (${site.legal.atolNumber})` : ""}.
+        Other packages may be protected under ABTA
+        {has(site.legal.abtaNumber) ? ` (${site.legal.abtaNumber})` : ""}. Your
+        ATOL Certificate and the applicable protection details are provided with
+        your booking confirmation — please keep them safe.
       </p>
 
       <h2>Prices</h2>

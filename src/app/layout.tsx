@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Poppins, Montserrat, Caveat } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
@@ -38,6 +38,28 @@ export const metadata: Metadata = {
   },
   description: site.description,
   applicationName: site.name,
+  keywords: [
+    "travel agent UK",
+    "independent travel consultant",
+    "holiday planner",
+    "personal travel consultant",
+    "cruise holidays",
+    "Disney holidays",
+    "luxury holidays",
+    "honeymoons",
+    "family holidays",
+    "Travel With Mia",
+  ],
+  authors: [{ name: site.consultant }],
+  creator: site.name,
+  publisher: site.name,
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    title: site.name,
+    statusBarStyle: "black-translucent",
+  },
+  formatDetection: { telephone: false },
   openGraph: {
     type: "website",
     siteName: site.name,
@@ -51,8 +73,20 @@ export const metadata: Metadata = {
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
   alternates: { canonical: "/" },
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+    : undefined,
+};
+
+export const viewport: Viewport = {
+  themeColor: "#14130F",
+  colorScheme: "light",
 };
 
 export default function RootLayout({

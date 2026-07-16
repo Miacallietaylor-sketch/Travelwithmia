@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { site } from "@/lib/site";
+import { site, has } from "@/lib/site";
 import { holidayTypes } from "@/data/holidayTypes";
 
 const explore = [
@@ -94,34 +94,53 @@ export function Footer() {
           <div className="text-sm text-charcoal">
             <h2 className="eyebrow mb-3">Financial protection</h2>
             <p className="mb-2">
-              Package holidays are protected under ATOL / ABTA schemes.
+              Package holidays I arrange are financially protected under the
+              relevant ATOL and/or ABTA schemes.
             </p>
-            <p className="font-label text-xs">
-              <span className="rounded bg-beige px-1.5 py-0.5 text-gold-ink">
-                {site.legal.atolNumber}
-              </span>{" "}
-              <span className="rounded bg-beige px-1.5 py-0.5 text-gold-ink">
-                {site.legal.abtaNumber}
-              </span>
-            </p>
-            <p className="mt-2 text-xs text-charcoal/60">
-              Numbers shown are placeholders in this demo and must be replaced
-              with genuine registrations before going live.
-            </p>
+            {has(site.legal.atolNumber) || has(site.legal.abtaNumber) ? (
+              <p className="font-label text-xs">
+                {has(site.legal.atolNumber) && (
+                  <span className="mr-1 inline-block rounded bg-beige px-1.5 py-0.5 text-gold-ink">
+                    ATOL {site.legal.atolNumber}
+                  </span>
+                )}
+                {has(site.legal.abtaNumber) && (
+                  <span className="inline-block rounded bg-beige px-1.5 py-0.5 text-gold-ink">
+                    ABTA {site.legal.abtaNumber}
+                  </span>
+                )}
+              </p>
+            ) : (
+              <p className="text-xs text-charcoal/70">
+                Your ATOL Certificate and protection details are provided with
+                your booking confirmation.
+              </p>
+            )}
           </div>
 
           <div className="text-sm text-charcoal">
             <h2 className="eyebrow mb-3">Trader identity</h2>
-            <p>{site.legal.registeredName}</p>
-            <p>{site.legal.companyNumber}</p>
-            <p>{site.legal.registeredAddress}</p>
-            <p className="mt-1">VAT: {site.legal.vatNumber}</p>
+            <p>{has(site.legal.registeredName) ? site.legal.registeredName : site.legal.tradingName}</p>
+            {has(site.legal.companyNumber) && <p>Company no. {site.legal.companyNumber}</p>}
+            {has(site.legal.registeredAddress) ? (
+              <p>{site.legal.registeredAddress}</p>
+            ) : (
+              <p className="text-charcoal/70">
+                Registered in the United Kingdom. Full company details available
+                on request.
+              </p>
+            )}
+            {has(site.legal.vatNumber) && <p className="mt-1">VAT: {site.legal.vatNumber}</p>}
           </div>
 
           <div className="text-sm text-charcoal">
             <h2 className="eyebrow mb-3">Contact</h2>
-            <p>{site.contact.email}</p>
-            <p>{site.contact.phone}</p>
+            <p>
+              <a href={`mailto:${site.contact.email}`} className="hover:text-gold-ink">
+                {site.contact.email}
+              </a>
+            </p>
+            {has(site.contact.phone) && <p>{site.contact.phone}</p>}
             <p className="mt-1 text-xs text-charcoal/70">{site.contact.hours}</p>
           </div>
         </div>

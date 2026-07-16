@@ -31,8 +31,8 @@ export function TrustBar() {
         ))}
       </div>
       <p className="sr-only">
-        Financial protection numbers are shown in the footer. Business:{" "}
-        {site.legal.registeredName}.
+        Financial protection details are provided with your booking. Business:{" "}
+        {site.legal.tradingName}.
       </p>
     </section>
   );

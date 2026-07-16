@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { ConciergeNote } from "@/components/ConciergeNote";
-import { site } from "@/lib/site";
+import { site, has } from "@/lib/site";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
@@ -32,20 +32,28 @@ export default function ContactPage() {
                 <dt className="font-label text-xs font-semibold uppercase tracking-wide text-charcoal/70">
                   Email
                 </dt>
-                <dd className="text-ink">{site.contact.email}</dd>
+                <dd className="text-ink">
+                  <a href={`mailto:${site.contact.email}`} className="hover:text-gold-ink">
+                    {site.contact.email}
+                  </a>
+                </dd>
               </div>
-              <div>
-                <dt className="font-label text-xs font-semibold uppercase tracking-wide text-charcoal/70">
-                  Phone
-                </dt>
-                <dd className="text-ink">{site.contact.phone}</dd>
-              </div>
-              <div>
-                <dt className="font-label text-xs font-semibold uppercase tracking-wide text-charcoal/70">
-                  WhatsApp
-                </dt>
-                <dd className="text-ink">{site.contact.whatsapp}</dd>
-              </div>
+              {has(site.contact.phone) && (
+                <div>
+                  <dt className="font-label text-xs font-semibold uppercase tracking-wide text-charcoal/70">
+                    Phone
+                  </dt>
+                  <dd className="text-ink">{site.contact.phone}</dd>
+                </div>
+              )}
+              {has(site.contact.whatsapp) && (
+                <div>
+                  <dt className="font-label text-xs font-semibold uppercase tracking-wide text-charcoal/70">
+                    WhatsApp
+                  </dt>
+                  <dd className="text-ink">{site.contact.whatsapp}</dd>
+                </div>
+              )}
               <div>
                 <dt className="font-label text-xs font-semibold uppercase tracking-wide text-charcoal/70">
                   Hours
@@ -54,7 +62,8 @@ export default function ContactPage() {
               </div>
             </dl>
             <p className="mt-4 text-xs text-charcoal/60">
-              Contact details shown are placeholders in this demo.
+              The quickest way to get moving is the quote form — it comes
+              straight to me and I&apos;ll reply personally.
             </p>
           </div>
 

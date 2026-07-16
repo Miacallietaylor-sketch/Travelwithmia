@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LegalPage } from "@/components/LegalPage";
-import { site } from "@/lib/site";
+import { site, has } from "@/lib/site";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
@@ -15,10 +15,10 @@ export default function PrivacyPage() {
   return (
     <LegalPage title="Privacy Policy" updated="10 July 2026">
       <p>
-        This policy explains how {site.legal.registeredName} (trading as{" "}
-        {site.legal.tradingName}, &quot;I&quot;, &quot;me&quot;) collects and
-        uses your personal data, and your rights under UK GDPR and the Data
-        Protection Act 2018. I am the data controller.
+        This policy explains how {site.legal.tradingName} (&quot;I&quot;,
+        &quot;me&quot;) collects and uses your personal data, and your rights
+        under UK GDPR and the Data Protection Act 2018. I am the data
+        controller.
       </p>
 
       <h2>What I collect</h2>
@@ -90,7 +90,8 @@ export default function PrivacyPage() {
 
       <h2>Contact</h2>
       <p>
-        {site.legal.registeredName}, {site.legal.registeredAddress}. Email{" "}
+        {has(site.legal.registeredName) ? site.legal.registeredName : site.legal.tradingName}
+        {has(site.legal.registeredAddress) ? `, ${site.legal.registeredAddress}` : ""}. Email{" "}
         {site.contact.email}.
       </p>
     </LegalPage>
