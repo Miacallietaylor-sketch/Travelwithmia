@@ -97,8 +97,8 @@ export const holidayTypes: HolidayType[] = [
     conciergeNote:
       "Tell me the ages and I'll picture the trip. I do this constantly.",
     image:
-      "https://images.unsplash.com/photo-1602002418082-a4443e081dd1?auto=format&fit=crop&w=1200&q=70",
-    imageAlt: "A family walking along a sandy beach at golden hour",
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=70",
+    imageAlt: "A calm turquoise beach with soft golden sand",
     priceFrom: "£549pp",
   },
   {
